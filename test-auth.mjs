@@ -1,0 +1,1 @@
+import * as auth from './src/utils/auth.js'; async function run() { try { const token = await auth.getAccessToken(); console.log('Successfully retrieved SP-API access token:', token.substring(0, 20) + '...'); } catch (e) { console.error(e); } } run();

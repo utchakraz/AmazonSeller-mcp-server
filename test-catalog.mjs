@@ -1,0 +1,1 @@
+import * as catalog from './src/tools/catalog.js'; async function run() { try { const result = await catalog.searchCatalogItems('fountain', ['images', 'itemDetails']); console.log('Successfully retrieved products via SP-API SDK tool. Found:', result.items.length); console.log(JSON.stringify(result.items[0], null, 2)); } catch (e) { console.error(e); } } run();

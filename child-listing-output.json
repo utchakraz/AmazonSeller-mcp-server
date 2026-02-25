@@ -1,0 +1,296 @@
+﻿{
+  "sku": "CC-SQAN-QKBS",
+  "summaries": [
+    {
+      "marketplaceId": "A39IBJ37TRP1C6",
+      "asin": "B0GPWLPB3D",
+      "productType": "TABLECLOTH",
+      "conditionType": "new_new",
+      "status": [
+        "DISCOVERABLE",
+        "BUYABLE"
+      ],
+      "itemName": "RB Living 100% Cotton Tablecloth (150x225cm), Rectangle Washable Dining Table Cover, Crimson Botanical Floral Print with Striped Border, Farmhouse & Everyday Table Decor",
+      "createdDate": "2026-02-24T05:35:03.783Z",
+      "lastUpdatedDate": "2026-02-24T05:35:03.783Z",
+      "mainImage": {
+        "link": "https://m.media-amazon.com/images/I/41S-TzUvGqL.jpg",
+        "height": 500,
+        "width": 500
+      }
+    }
+  ],
+  "attributes": {
+    "color": [
+      {
+        "value": "Crimson",
+        "language_tag": "en_AU",
+        "marketplace_id": "A39IBJ37TRP1C6"
+      }
+    ],
+    "included_components": [
+      {
+        "value": "1 x tablecloth",
+        "language_tag": "en_AU",
+        "marketplace_id": "A39IBJ37TRP1C6"
+      }
+    ],
+    "item_package_weight": [
+      {
+        "value": 1.1,
+        "unit": "kilograms",
+        "marketplace_id": "A39IBJ37TRP1C6"
+      }
+    ],
+    "fulfillment_availability": [
+      {
+        "fulfillment_channel_code": "DEFAULT",
+        "quantity": 7
+      }
+    ],
+    "item_length_width": [
+      {
+        "length": {
+          "unit": "centimeters",
+          "value": 225
+        },
+        "width": {
+          "unit": "centimeters",
+          "value": 150
+        },
+        "marketplace_id": "A39IBJ37TRP1C6"
+      }
+    ],
+    "manufacturer": [
+      {
+        "value": "RB Living",
+        "language_tag": "en_AU",
+        "marketplace_id": "A39IBJ37TRP1C6"
+      }
+    ],
+    "recommended_browse_nodes": [
+      {
+        "value": "5014389051",
+        "marketplace_id": "A39IBJ37TRP1C6"
+      }
+    ],
+    "bullet_point": [
+      {
+        "value": "PREMIUM 100% COTTON WEAVE ΓÇö Crafted from high-quality, naturally soft, and absorbent cotton that gets better with every wash, ensuring long-lasting durability for your dining table.",
+        "language_tag": "en_AU",
+        "marketplace_id": "A39IBJ37TRP1C6"
+      },
+      {
+        "value": "HERITAGE BOTANICAL DESIGN ΓÇö Features an intricate crimson floral print framed by a finely striped border, bringing timeless elegance and warmth to any family meal or dinner party.",
+        "language_tag": "en_AU",
+        "marketplace_id": "A39IBJ37TRP1C6"
+      },
+      {
+        "value": "OVERSIZED FOR REAL LIFE ΓÇö Generously sized to provide beautiful drape and authentic coverage, elevating your table setting beyond standard commercial dimensions.",
+        "language_tag": "en_AU",
+        "marketplace_id": "A39IBJ37TRP1C6"
+      },
+      {
+        "value": "ECO-FRIENDLY & REUSABLE ΓÇö Move away from disposable paper products with sustainable, premium textiles. Cold hand wash with like colors for years of beautiful table presentation.",
+        "language_tag": "en_AU",
+        "marketplace_id": "A39IBJ37TRP1C6"
+      },
+      {
+        "value": "COMPLETE THE COLLECTION ΓÇö Mix and match with coordinated RB Living table linensΓÇöincluding tablecloths, runners, placemats, and napkinsΓÇöfor a deeply curated, designer tablescape.",
+        "language_tag": "en_AU",
+        "marketplace_id": "A39IBJ37TRP1C6"
+      }
+    ],
+    "item_dimensions": [
+      {
+        "length": {
+          "unit": "centimeters",
+          "value": 225
+        },
+        "width": {
+          "unit": "centimeters",
+          "value": 150
+        },
+        "height": {
+          "value": 0.3,
+          "unit": "centimeters"
+        },
+        "marketplace_id": "A39IBJ37TRP1C6"
+      }
+    ],
+    "model_number": [
+      {
+        "value": "09309003499271",
+        "marketplace_id": "A39IBJ37TRP1C6"
+      }
+    ],
+    "product_description": [
+      {
+        "value": "Elevate your dining experience with the RB Living Crimson Courtyard 100% Cotton Tablecloth (150 x 225cm). Designed for both everyday family meals and special farmhouse gatherings, this washable rectangle table cover features a rich crimson botanical design and a finely striped border. Wrought from premium cotton, it offers a beautifully soft, lightweight drape that protects your table while adding a touch of timeless heritage elegance. Eco-friendly and reusable; simply cold hand wash with like colors. Perfect for holiday dinners, Thanksgiving, Christmas, or creating a designer tablescape year-round.",
+        "language_tag": "en_AU",
+        "marketplace_id": "A39IBJ37TRP1C6"
+      }
+    ],
+    "brand": [
+      {
+        "value": "RB Living",
+        "language_tag": "en_AU",
+        "marketplace_id": "A39IBJ37TRP1C6"
+      }
+    ],
+    "supplier_declared_dg_hz_regulation": [
+      {
+        "value": "not_applicable",
+        "marketplace_id": "A39IBJ37TRP1C6"
+      }
+    ],
+    "externally_assigned_product_identifier": [
+      {
+        "value": "09309003499271",
+        "type": "gtin",
+        "marketplace_id": "A39IBJ37TRP1C6"
+      }
+    ],
+    "country_of_origin": [
+      {
+        "value": "IN",
+        "marketplace_id": "A39IBJ37TRP1C6"
+      }
+    ],
+    "item_name": [
+      {
+        "value": "RB Living 100% Cotton Tablecloth (150x225cm), Rectangle Washable Dining Table Cover, Crimson Botanical Floral Print with Striped Border, Farmhouse & Everyday Table Decor",
+        "language_tag": "en_AU",
+        "marketplace_id": "A39IBJ37TRP1C6"
+      }
+    ],
+    "merchant_shipping_group": [
+      {
+        "value": "legacy-template-id",
+        "marketplace_id": "A39IBJ37TRP1C6"
+      }
+    ],
+    "is_this_product_subject_to_buyer_age_restrictions": [
+      {
+        "value": false,
+        "marketplace_id": "A39IBJ37TRP1C6"
+      }
+    ],
+    "list_price": [
+      {
+        "value_with_tax": 89.99,
+        "currency": "AUD",
+        "marketplace_id": "A39IBJ37TRP1C6"
+      }
+    ],
+    "batteries_required": [
+      {
+        "value": false,
+        "marketplace_id": "A39IBJ37TRP1C6"
+      }
+    ],
+    "number_of_items": [
+      {
+        "value": 1,
+        "marketplace_id": "A39IBJ37TRP1C6"
+      }
+    ],
+    "condition_type": [
+      {
+        "value": "new_new",
+        "marketplace_id": "A39IBJ37TRP1C6"
+      }
+    ],
+    "item_package_dimensions": [
+      {
+        "length": {
+          "unit": "centimeters",
+          "value": 30
+        },
+        "width": {
+          "unit": "centimeters",
+          "value": 25
+        },
+        "height": {
+          "unit": "centimeters",
+          "value": 5
+        },
+        "marketplace_id": "A39IBJ37TRP1C6"
+      }
+    ],
+    "material": [
+      {
+        "value": "Cotton",
+        "language_tag": "en_AU",
+        "marketplace_id": "A39IBJ37TRP1C6"
+      }
+    ],
+    "part_number": [
+      {
+        "value": "09309003499271",
+        "marketplace_id": "A39IBJ37TRP1C6"
+      }
+    ],
+    "unit_count": [
+      {
+        "type": {
+          "value": "count",
+          "language_tag": "en_AU"
+        },
+        "value": 1,
+        "marketplace_id": "A39IBJ37TRP1C6"
+      }
+    ],
+    "main_product_image_locator": [
+      {
+        "media_location": "https://m.media-amazon.com/images/I/61JuEjJ4bbL.jpg",
+        "marketplace_id": "A39IBJ37TRP1C6"
+      }
+    ],
+    "purchasable_offer": [
+      {
+        "currency": "AUD",
+        "audience": "ALL",
+        "our_price": [
+          {
+            "schedule": [
+              {
+                "value_with_tax": 89.99
+              }
+            ]
+          }
+        ],
+        "marketplace_id": "A39IBJ37TRP1C6"
+      }
+    ]
+  },
+  "issues": [
+    {
+      "code": "18448",
+      "message": "Your submission is missing few key attributes: item_shape, recommended_uses_for_product. Missing these attributes do not block your product from being displayed on Amazon. However it impacts the overall quality of your listing.",
+      "severity": "WARNING",
+      "attributeNames": [
+        "item_shape",
+        "recommended_uses_for_product"
+      ],
+      "categories": [
+        "MISSING_ATTRIBUTE"
+      ]
+    }
+  ],
+  "offers": [
+    {
+      "marketplaceId": "A39IBJ37TRP1C6",
+      "offerType": "B2C",
+      "price": {
+        "currency": "AUD",
+        "currencyCode": "AUD",
+        "amount": "89.99"
+      },
+      "audience": {
+        "value": "ALL",
+        "displayName": "Sell on Amazon"
+      }
+    }
+  ]
+}

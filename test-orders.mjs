@@ -1,0 +1,1 @@
+import { ordersTools } from './src/tools/orders.js'; async function run() { try { const result = await ordersTools.getOrders.handler({ createdAfter: '2023-01-01T00:00:00Z', maxResultsPerPage: 1 }); console.log('\n--- SUCCESS: SP-API Orders Data Retrieved ---\n', result.content[0].text); } catch (e) { console.error(e); } } run();

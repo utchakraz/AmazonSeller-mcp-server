@@ -1,0 +1,1 @@
+import { listingsTools } from './src/tools/listings.js'; async function run() { try { console.log('This is a stub, but we want to fetch the JSON schema for requirements=PURCHASABLE_OFFER for ProductType=TABLECLOTH'); } catch(e) { console.error(e.message); } } run();
