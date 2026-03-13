@@ -16,22 +16,22 @@ import { z } from 'zod';
               marketplaceIds: marketplace,
               granularityType
             };
-            
+
             if (granularityId) {
               queryParams.granularityId = granularityId;
             }
-            
+
             if (sellerSkus && sellerSkus.length > 0) {
               queryParams.sellerSkus = sellerSkus.join(',');
             }
-            
+
             const data = await makeSpApiRequest(
               'GET',
               '/fba/inventory/v1/summaries',
               null,
               queryParams
             );
-            
+
             return {
               content: [{ type: "text", text: JSON.stringify(data, null, 2) }]
             };
@@ -44,7 +44,7 @@ import { z } from 'zod';
         },
         description: "Get inventory summaries for the specified seller SKUs"
       },
-      
+
       updateInventory: {
         schema: {
           sellerSku: z.string().describe("The seller SKU for which to update the inventory"),
@@ -59,17 +59,17 @@ import { z } from 'zod';
                 availableQuantity: quantity
               }
             };
-            
+
             if (fulfillmentLatency !== undefined) {
               payload.inventory.fulfillmentLatency = fulfillmentLatency;
             }
-            
+
             const data = await makeSpApiRequest(
               'PUT',
               `/inventory/v1/inventories/${sellerSku}`,
               payload
             );
-            
+
             return {
               content: [{ type: "text", text: JSON.stringify(data, null, 2) }]
             };

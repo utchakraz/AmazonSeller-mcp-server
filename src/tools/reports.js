@@ -15,21 +15,21 @@ import { z } from 'zod';
               reportType,
               marketplaceIds: marketplaceIds || [process.env.SP_API_MARKETPLACE_ID]
             };
-            
+
             if (dataStartTime) {
               payload.dataStartTime = dataStartTime;
             }
-            
+
             if (dataEndTime) {
               payload.dataEndTime = dataEndTime;
             }
-            
+
             const data = await makeSpApiRequest(
               'POST',
               '/reports/2021-06-30/reports',
               payload
             );
-            
+
             return {
               content: [{ type: "text", text: JSON.stringify(data, null, 2) }]
             };
@@ -42,7 +42,7 @@ import { z } from 'zod';
         },
         description: "Create a report request"
       },
-      
+
       getReport: {
         schema: {
           reportId: z.string().describe("The report ID")
@@ -53,7 +53,7 @@ import { z } from 'zod';
               'GET',
               `/reports/2021-06-30/reports/${reportId}`
             );
-            
+
             return {
               content: [{ type: "text", text: JSON.stringify(data, null, 2) }]
             };
@@ -66,7 +66,7 @@ import { z } from 'zod';
         },
         description: "Get information about a report"
       },
-      
+
       getReportDocument: {
         schema: {
           reportDocumentId: z.string().describe("The report document ID")
@@ -77,7 +77,7 @@ import { z } from 'zod';
               'GET',
               `/reports/2021-06-30/documents/${reportDocumentId}`
             );
-            
+
             return {
               content: [{ type: "text", text: JSON.stringify(data, null, 2) }]
             };
@@ -90,7 +90,7 @@ import { z } from 'zod';
         },
         description: "Get information about a report document"
       },
-      
+
       getReports: {
         schema: {
           reportTypes: z.array(z.string()).optional().describe("A list of report types"),
@@ -101,30 +101,30 @@ import { z } from 'zod';
         handler: async ({ reportTypes, processingStatuses, marketplaceIds, maxResults }) => {
           try {
             const queryParams = {};
-            
+
             if (reportTypes && reportTypes.length > 0) {
               queryParams.reportTypes = reportTypes.join(',');
             }
-            
+
             if (processingStatuses && processingStatuses.length > 0) {
               queryParams.processingStatuses = processingStatuses.join(',');
             }
-            
+
             if (marketplaceIds && marketplaceIds.length > 0) {
               queryParams.marketplaceIds = marketplaceIds.join(',');
             }
-            
+
             if (maxResults) {
               queryParams.maxResults = maxResults;
             }
-            
+
             const data = await makeSpApiRequest(
               'GET',
               '/reports/2021-06-30/reports',
               null,
               queryParams
             );
-            
+
             return {
               content: [{ type: "text", text: JSON.stringify(data, null, 2) }]
             };

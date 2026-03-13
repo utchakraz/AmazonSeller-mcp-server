@@ -30,7 +30,7 @@ export const listingsTools = {
           null,
               queryParams
             );
-            
+
             return {
               content: [{ type: "text", text: JSON.stringify(data, null, 2) }]
             };
@@ -87,7 +87,7 @@ export const listingsTools = {
     },
     description: "Patches a listings item for a selling partner"
   },
-  
+
   putListingsItem: {
         schema: {
           sellerId: z.string().describe("The seller identifier"),
@@ -103,27 +103,27 @@ export const listingsTools = {
             const queryParams = {
               marketplaceIds: marketplaceIds || [process.env.SP_API_MARKETPLACE_ID]
             };
-            
+
             if (issueLocale) {
               queryParams.issueLocale = issueLocale;
             }
-            
+
             if (requirements) {
               queryParams.requirements = requirements;
             }
-            
+
             const payload = {
               productType,
               attributes
             };
-            
+
             const data = await makeSpApiRequest(
               'PUT',
               `/listings/2021-08-01/items/${sellerId}/${sku}`,
               payload,
               queryParams
             );
-            
+
             return {
               content: [{ type: "text", text: JSON.stringify(data, null, 2) }]
             };
@@ -136,7 +136,7 @@ export const listingsTools = {
         },
         description: "Creates or updates a listings item for a selling partner"
       },
-      
+
       deleteListingsItem: {
         schema: {
           sellerId: z.string().describe("The seller identifier"),
@@ -149,18 +149,18 @@ export const listingsTools = {
             const queryParams = {
               marketplaceIds: marketplaceIds || [process.env.SP_API_MARKETPLACE_ID]
             };
-            
+
             if (issueLocale) {
               queryParams.issueLocale = issueLocale;
             }
-            
+
             const data = await makeSpApiRequest(
               'DELETE',
               `/listings/2021-08-01/items/${sellerId}/${sku}`,
               null,
               queryParams
             );
-            
+
             return {
               content: [{ type: "text", text: JSON.stringify(data, null, 2) }]
             };

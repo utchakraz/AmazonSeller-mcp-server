@@ -16,7 +16,7 @@ import { z } from 'zod';
               null,
               { marketplaceIds: marketplace }
             );
-            
+
             return {
               content: [{ type: "text", text: JSON.stringify(data, null, 2) }]
             };
@@ -29,7 +29,7 @@ import { z } from 'zod';
         },
         description: "Returns information about a subscription for the specified notification type"
       },
-      
+
       createSubscription: {
         schema: {
           notificationType: z.string().describe("The notification type"),
@@ -44,14 +44,14 @@ import { z } from 'zod';
               payloadVersion,
               destinationId
             };
-            
+
             const data = await makeSpApiRequest(
               'POST',
               `/notifications/v1/subscriptions/${notificationType}`,
               payload,
               { marketplaceIds: marketplace }
             );
-            
+
             return {
               content: [{ type: "text", text: JSON.stringify(data, null, 2) }]
             };
@@ -64,7 +64,7 @@ import { z } from 'zod';
         },
         description: "Creates a subscription for the specified notification type"
       },
-      
+
       getDestinations: {
         schema: {},
         handler: async () => {
@@ -73,7 +73,7 @@ import { z } from 'zod';
               'GET',
               '/notifications/v1/destinations'
             );
-            
+
             return {
               content: [{ type: "text", text: JSON.stringify(data, null, 2) }]
             };
@@ -86,7 +86,7 @@ import { z } from 'zod';
         },
         description: "Returns information about all destinations"
       },
-      
+
       createDestination: {
         schema: {
           name: z.string().describe("The name of the destination"),
@@ -105,13 +105,13 @@ import { z } from 'zod';
               name,
               resourceSpecification
             };
-            
+
             const data = await makeSpApiRequest(
               'POST',
               '/notifications/v1/destinations',
               payload
             );
-            
+
             return {
               content: [{ type: "text", text: JSON.stringify(data, null, 2) }]
             };

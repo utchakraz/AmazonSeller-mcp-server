@@ -8,9 +8,9 @@ import { z } from 'zod';
           try {
             const token = await getAccessToken();
             return {
-              content: [{ 
-                type: "text", 
-                text: `Access token retrieved successfully. Token: ${token.substring(0, 10)}...` 
+              content: [{
+                type: "text",
+                text: `Access token retrieved successfully. Token: ${token.substring(0, 10)}...`
               }]
             };
           } catch (error) {
@@ -22,7 +22,7 @@ import { z } from 'zod';
         },
         description: "Get an access token for Amazon SP-API"
       },
-      
+
       checkCredentials: {
         schema: {},
         handler: async () => {

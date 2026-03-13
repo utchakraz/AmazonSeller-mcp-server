@@ -16,14 +16,14 @@ import { z } from 'zod';
               ItemIds: itemIds.join(','),
               MarketplaceId: marketplace
             };
-            
+
             const data = await makeSpApiRequest(
               'GET',
               '/products/pricing/v0/price',
               null,
               queryParams
             );
-            
+
             return {
               content: [{ type: "text", text: JSON.stringify(data, null, 2) }]
             };
@@ -36,7 +36,7 @@ import { z } from 'zod';
         },
         description: "Returns pricing information for a list of products"
       },
-      
+
       getCompetitivePricing: {
         schema: {
           itemType: z.enum(['Asin', 'Sku']).describe("Indicates whether ASIN values or seller SKU values are used to identify items"),
@@ -51,14 +51,14 @@ import { z } from 'zod';
               ItemIds: itemIds.join(','),
               MarketplaceId: marketplace
             };
-            
+
             const data = await makeSpApiRequest(
               'GET',
               '/products/pricing/v0/competitivePrice',
               null,
               queryParams
             );
-            
+
             return {
               content: [{ type: "text", text: JSON.stringify(data, null, 2) }]
             };
@@ -71,7 +71,7 @@ import { z } from 'zod';
         },
         description: "Returns competitive pricing information for a list of products"
       },
-      
+
       getListingOffers: {
         schema: {
           sellerSku: z.string().describe("The seller SKU of the item"),
@@ -90,7 +90,7 @@ import { z } from 'zod';
                 ItemCondition: itemCondition
               }
             );
-            
+
             return {
               content: [{ type: "text", text: JSON.stringify(data, null, 2) }]
             };

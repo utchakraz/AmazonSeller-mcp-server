@@ -45,7 +45,7 @@ import { McpServer, ResourceTemplate } from '@modelcontextprotocol/sdk/server/mc
             }]
           };
         }
-        
+
         return {
           contents: [{
             uri: uri.href,

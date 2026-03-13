@@ -14,26 +14,26 @@ import { z } from 'zod';
             const queryParams = {
               MarketplaceIds: marketplaceIds || [process.env.SP_API_MARKETPLACE_ID]
             };
-            
+
             if (createdAfter) {
               queryParams.CreatedAfter = createdAfter;
             }
-            
+
             if (createdBefore) {
               queryParams.CreatedBefore = createdBefore;
             }
-            
+
             if (orderStatuses && orderStatuses.length > 0) {
               queryParams.OrderStatuses = orderStatuses.join(',');
             }
-            
+
             const data = await makeSpApiRequest(
               'GET',
               '/orders/v0/orders',
               null,
               queryParams
             );
-            
+
             return {
               content: [{ type: "text", text: JSON.stringify(data, null, 2) }]
             };
@@ -46,7 +46,7 @@ import { z } from 'zod';
         },
         description: "Get orders based on specified filters"
       },
-      
+
       getOrder: {
         schema: {
           orderId: z.string().describe("The order ID")
@@ -57,7 +57,7 @@ import { z } from 'zod';
               'GET',
               `/orders/v0/orders/${orderId}`
             );
-            
+
             return {
               content: [{ type: "text", text: JSON.stringify(data, null, 2) }]
             };
@@ -70,7 +70,7 @@ import { z } from 'zod';
         },
         description: "Get details for a specific order"
       },
-      
+
       getOrderItems: {
         schema: {
           orderId: z.string().describe("The order ID")
@@ -81,7 +81,7 @@ import { z } from 'zod';
               'GET',
               `/orders/v0/orders/${orderId}/orderItems`
             );
-            
+
             return {
               content: [{ type: "text", text: JSON.stringify(data, null, 2) }]
             };

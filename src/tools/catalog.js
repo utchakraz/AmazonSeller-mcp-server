@@ -16,7 +16,7 @@ import { z } from 'zod';
               null,
               { marketplaceIds: marketplace }
             );
-            
+
             return {
               content: [{ type: "text", text: JSON.stringify(data, null, 2) }]
             };
@@ -29,7 +29,7 @@ import { z } from 'zod';
         },
         description: "Get details about a specific catalog item by ASIN"
       },
-      
+
       searchCatalogItems: {
         schema: {
           keywords: z.string().describe("Keywords to search for"),
@@ -43,18 +43,18 @@ import { z } from 'zod';
               keywords,
               marketplaceIds: marketplace
             };
-            
+
             if (includedData && includedData.length > 0) {
               queryParams.includedData = includedData.join(',');
             }
-            
+
             const data = await makeSpApiRequest(
               'GET',
               '/catalog/2022-04-01/items',
               null,
               queryParams
             );
-            
+
             return {
               content: [{ type: "text", text: JSON.stringify(data, null, 2) }]
             };

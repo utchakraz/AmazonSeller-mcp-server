@@ -11,26 +11,26 @@ import { z } from 'zod';
         handler: async ({ maxResultsPerPage, financialEventGroupStartedAfter, financialEventGroupStartedBefore }) => {
           try {
             const queryParams = {};
-            
+
             if (maxResultsPerPage) {
               queryParams.MaxResultsPerPage = maxResultsPerPage;
             }
-            
+
             if (financialEventGroupStartedAfter) {
               queryParams.FinancialEventGroupStartedAfter = financialEventGroupStartedAfter;
             }
-            
+
             if (financialEventGroupStartedBefore) {
               queryParams.FinancialEventGroupStartedBefore = financialEventGroupStartedBefore;
             }
-            
+
             const data = await makeSpApiRequest(
               'GET',
               '/finances/v0/financialEventGroups',
               null,
               queryParams
             );
-            
+
             return {
               content: [{ type: "text", text: JSON.stringify(data, null, 2) }]
             };
@@ -43,7 +43,7 @@ import { z } from 'zod';
         },
         description: "Lists financial event groups"
       },
-      
+
       listFinancialEvents: {
         schema: {
           maxResultsPerPage: z.number().int().optional().describe("The maximum number of results to return per page"),
@@ -53,26 +53,26 @@ import { z } from 'zod';
         handler: async ({ maxResultsPerPage, postedAfter, postedBefore }) => {
           try {
             const queryParams = {};
-            
+
             if (maxResultsPerPage) {
               queryParams.MaxResultsPerPage = maxResultsPerPage;
             }
-            
+
             if (postedAfter) {
               queryParams.PostedAfter = postedAfter;
             }
-            
+
             if (postedBefore) {
               queryParams.PostedBefore = postedBefore;
             }
-            
+
             const data = await makeSpApiRequest(
               'GET',
               '/finances/v0/financialEvents',
               null,
               queryParams
             );
-            
+
             return {
               content: [{ type: "text", text: JSON.stringify(data, null, 2) }]
             };
@@ -85,7 +85,7 @@ import { z } from 'zod';
         },
         description: "Lists financial events"
       },
-      
+
       getFinancialEventGroup: {
         schema: {
           eventGroupId: z.string().describe("The identifier of the financial event group to which the events belong")
@@ -96,7 +96,7 @@ import { z } from 'zod';
               'GET',
               `/finances/v0/financialEventGroups/${eventGroupId}/financialEvents`
             );
-            
+
             return {
               content: [{ type: "text", text: JSON.stringify(data, null, 2) }]
             };
