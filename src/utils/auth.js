@@ -72,10 +72,9 @@ export function generateAWSSignature(accessToken, method, path, payload = '', qu
   // Create canonical headers
   const canonicalHeaders =
     `host:${host}\n` +
-    `x-amz-access-token:${accessToken}\n` +
     `x-amz-date:${datetime}\n`;
 
-  const signedHeaders = 'host;x-amz-access-token;x-amz-date';
+  const signedHeaders = 'host;x-amz-date';
 
   // Create payload hash
   const payloadHash = crypto.SHA256(payload).toString();

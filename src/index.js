@@ -1,13 +1,18 @@
 #!/usr/bin/env node
-    import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
-    import { server } from './server.js';
-    import dotenv from 'dotenv';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
+import dotenv from 'dotenv';
+import { server } from './server.js';
 
-    // Load environment variables
-    dotenv.config();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-    console.log('Starting Amazon SP-API MCP server...');
+// Always resolve the Amazon MCP env file relative to this service.
+dotenv.config({ path: path.resolve(__dirname, '..', '.env') });
 
-    // Start receiving messages on stdin and sending messages on stdout
-    const transport = new StdioServerTransport();
-    await server.connect(transport);
+console.log('Starting Amazon SP-API MCP server...');
+
+// Start receiving messages on stdin and sending messages on stdout
+const transport = new StdioServerTransport();
+await server.connect(transport);

@@ -2,8 +2,7 @@
 import fs from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { Client } from '@modelcontextprotocol/sdk/client/index.js';
-import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js';
+import { connectMcpClient, parseJsonText, toText } from './lib/mcpClient.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -15,48 +14,23 @@ const reportPath = path.join(reportDir, `shopify-channel-publish-${stamp}.json`)
 const latestPath = path.join(reportDir, 'shopify-channel-publish-latest.json');
 
 const WRITE_CONFIRM_TOKEN = process.env.SHOPIFY_MCP_WRITE_CONFIRM || 'RBL_WRITE_CONFIRM';
-const TARGET_CHANNEL_NAMES = new Set(['Google & YouTube', 'Facebook & Instagram', 'TikTok', 'Shop']);
-
-function toPowershellPath(inputPath) {
-  if (process.platform === 'win32') return inputPath;
-  const match = inputPath.match(/^\/mnt\/([a-zA-Z])\/(.*)$/);
-  if (!match) return inputPath;
-  const drive = match[1].toUpperCase();
-  const rest = match[2].replace(/\//g, '\\');
-  return `${drive}:\\${rest}`;
-}
-
-function toText(toolResult) {
-  if (!toolResult?.content || !Array.isArray(toolResult.content)) return '';
-  return toolResult.content
-    .filter((entry) => entry?.type === 'text' && typeof entry?.text === 'string')
-    .map((entry) => entry.text)
-    .join('\n');
-}
-
-function parseJsonText(value) {
-  try {
-    return JSON.parse(value);
-  } catch {
-    return null;
-  }
-}
+const EXCLUDED_PUBLICATION_NAMES = new Set(
+  String(process.env.SHOPIFY_PUBLISH_EXCLUDE_PUBLICATIONS || '')
+    .split(',')
+    .map((value) => value.trim())
+    .filter(Boolean)
+);
 
 async function connectShopifyMcp() {
-  const powershellCommand = process.platform === 'win32' ? 'powershell' : 'powershell.exe';
-  const startScript = toPowershellPath(path.join(repoRoot, 'scripts', 'mcp', 'start-shopify-mcp.ps1'));
-  const client = new Client({ name: 'shopify-channel-publish', version: '1.0.0' }, { capabilities: {} });
-  const transport = new StdioClientTransport({
-    command: powershellCommand,
-    args: ['-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', startScript],
+  return connectMcpClient({
+    repoRoot,
+    service: 'shopify',
+    clientName: 'shopify-channel-publish',
     env: {
-      ...process.env,
       SHOPIFY_MCP_ENABLE_WRITES: 'true',
       SHOPIFY_MCP_WRITE_CONFIRM: WRITE_CONFIRM_TOKEN,
     },
   });
-  await client.connect(transport);
-  return client;
 }
 
 async function callTool(client, tool, args = {}) {
@@ -88,7 +62,7 @@ async function callTool(client, tool, args = {}) {
 async function main() {
   const report = {
     startedAt,
-    targetChannelNames: Array.from(TARGET_CHANNEL_NAMES),
+    publicationSelectionMode: 'all-except-excluded',
     actions: [],
     publishes: [],
     summary: {},
@@ -122,7 +96,9 @@ async function main() {
         autoPublish: node?.autoPublish === true,
       })) || [];
 
-    const targetPublications = publications.filter((publication) => TARGET_CHANNEL_NAMES.has(publication.name));
+    const targetPublications = publications.filter(
+      (publication) => publication.id && !EXCLUDED_PUBLICATION_NAMES.has(publication.name)
+    );
     const publicationInputs = targetPublications.map((publication) => ({ publicationId: publication.id }));
 
     const productsRes = await callTool(shopify, 'admin_graphql', {
@@ -184,6 +160,7 @@ async function main() {
 
     report.summary = {
       publicationsFound: publications.length,
+      excludedPublications: Array.from(EXCLUDED_PUBLICATION_NAMES),
       targetPublications: targetPublications.map((publication) => ({
         id: publication.id,
         name: publication.name,
@@ -195,8 +172,8 @@ async function main() {
       publishFailed: failedPublishes,
       note:
         publicationInputs.length === 0
-          ? 'No target publications found for Google/Facebook/TikTok/Shop.'
-          : 'Publish attempted for each active product against all discovered target publications.',
+          ? 'No eligible publications found after exclusions.'
+          : 'Publish attempted for each active product against every eligible Shopify publication.',
     };
   } finally {
     await shopify.close();

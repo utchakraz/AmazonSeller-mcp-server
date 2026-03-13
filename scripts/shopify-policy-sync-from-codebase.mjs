@@ -2,8 +2,7 @@
 import fs from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { Client } from '@modelcontextprotocol/sdk/client/index.js';
-import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js';
+import { connectMcpClient, parseJsonText, toText } from './lib/mcpClient.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -109,46 +108,16 @@ const SOURCE_OF_TRUTH = {
   ],
 };
 
-function toPowershellPath(inputPath) {
-  if (process.platform === 'win32') return inputPath;
-  const match = inputPath.match(/^\/mnt\/([a-zA-Z])\/(.*)$/);
-  if (!match) return inputPath;
-  const drive = match[1].toUpperCase();
-  const rest = match[2].replace(/\//g, '\\');
-  return `${drive}:\\${rest}`;
-}
-
-function toText(toolResult) {
-  if (!toolResult?.content || !Array.isArray(toolResult.content)) return '';
-  return toolResult.content
-    .filter((entry) => entry?.type === 'text' && typeof entry?.text === 'string')
-    .map((entry) => entry.text)
-    .join('\n');
-}
-
-function parseJsonText(value) {
-  try {
-    return JSON.parse(value);
-  } catch {
-    return null;
-  }
-}
-
 async function connectShopifyMcp() {
-  const powershellCommand = process.platform === 'win32' ? 'powershell' : 'powershell.exe';
-  const startScript = toPowershellPath(path.join(repoRoot, 'scripts', 'mcp', 'start-shopify-mcp.ps1'));
-  const client = new Client({ name: 'shopify-policy-sync-from-codebase', version: '1.0.0' }, { capabilities: {} });
-  const transport = new StdioClientTransport({
-    command: powershellCommand,
-    args: ['-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', startScript],
+  return connectMcpClient({
+    repoRoot,
+    service: 'shopify',
+    clientName: 'shopify-policy-sync-from-codebase',
     env: {
-      ...process.env,
       SHOPIFY_MCP_ENABLE_WRITES: 'true',
       SHOPIFY_MCP_WRITE_CONFIRM: WRITE_CONFIRM_TOKEN,
     },
   });
-  await client.connect(transport);
-  return client;
 }
 
 async function callTool(client, tool, args = {}) {
